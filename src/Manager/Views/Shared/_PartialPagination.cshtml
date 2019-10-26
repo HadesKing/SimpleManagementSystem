@@ -1,0 +1,72 @@
+﻿
+
+@model Manager.Models.Pagination
+<div class="col-sm-5" style="padding-left: 0px;">
+    <div class="dataTables_info" style="text-align:left;vertical-align:middle;" id="example2_info" role="status" aria-live="polite">
+        <label style="display:none;">
+            <select name="example1_length" aria-controls="example1" class="form-control input-sm">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </label>
+        <span>
+            Showing @(Model.CurrentPageIndex.ToString()) to @(Model.PageSize.ToString()) of @(Model.TotalRow.ToString()) entries
+        </span>
+        <span style="display:none;">
+            共 @(Model.TotalRow.ToString()) 行
+        </span>
+    </div>
+</div>
+
+<div class="col-sm-7" style="display:none;">
+    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+        <ul class="pagination pagination-sm no-margin pull-right">
+            <li class="paginate_button previous disabled" id="example2_previous">
+                <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
+            </li>
+            <li class="paginate_button active">
+                <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a>
+            </li>
+            <li class="paginate_button ">
+                <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a>
+            </li>
+            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li>
+            <li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-7">
+    <div class="dataTables_paginate paging_simple_numbers" id="pagination">
+        <ul class="pagination pagination-sm no-margin pull-right">
+            @if (null != Model)
+            {
+                @if (Model.TotalPage > 1)
+                {
+                    <li class="paginate_button previous @(Model.CurrentPageIndex == 1 ? "disabled" : "") " data-dt-idx="0" tabindex="0">
+                        <a href="#">Previous</a>
+                    </li>
+                    @for (Int32 page = 1; page <= Model.TotalPage; page++)
+                    {
+                        <li class="paginate_button @(Model.CurrentPageIndex == page ? "active" : "")">
+                            <a href="#" data-dt-idx="@(page.ToString())" tabindex="@(page.ToString())">@(page.ToString())
+                            </a>
+                        </li>
+                    }
+                    <li class="paginate_button next @(Model.CurrentPageIndex == Model.TotalPage ? "disabled" : "") " data-dt-idx="@(Model.TotalPage.ToString())" tabindex="0">
+                        <a href="#">Next</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var url = $("#dataTableUrl").val(_menuDataTableUrl);
+
+    });
+</script>
