@@ -117,16 +117,16 @@
 
             if (username == "") {
                 $("#UserName").parent().addClass("has-error");
-                tipsUserName = layer.tips('请输入用户名', '#UserName', {
+                tipsUserName = layer.tips('Please enter user name.', '#UserName', {
                     tips: [2, '#FFB5B5']
                     , tipsMore: true
                     , time: 0
                 });
 
                 validateResult = false;
-            } else if (username.length < 6 || username.length > 12) {
+            } else if (username.length < 5 || username.length > 16) {
                 $("#UserName").parent().addClass("has-error");
-                tipsUserName = layer.tips('请输入6~12个字符', '#UserName', {
+                tipsUserName = layer.tips('Please enter 5 to 16 characters.', '#UserName', {
                     tips: [2, '#FFB5B5']
                     , tipsMore: true
                     , time: 0
@@ -137,16 +137,16 @@
 
             if (password == "") {
                 $("#Password").parent().addClass("has-error");
-                tipsPassword = layer.tips('请输入密码', '#Password', {
+                tipsPassword = layer.tips('Please enter your password.', '#Password', {
                     tips: [2, '#FFB5B5']
                     , tipsMore: true
                     , time: 0
                 });
 
                 validateResult = false;
-            } else if (password.length < 6 || password.length > 12) {
+            } else if (password.length < 6 || password.length > 20) {
                 $("#Password").parent().addClass("has-error");
-                tipsPassword = layer.tips('请输入6~12个字符', '#Password', {
+                tipsPassword = layer.tips('Please enter 6 to 20 characters', '#Password', {
                     tips: [2, '#FFB5B5']
                     , tipsMore: true
                     , time: 0
@@ -200,12 +200,21 @@
 
                 return result;
             });
+
+            $(document).keyup(function (e) {//捕获文档对象的按键弹起事件
+                if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+                    //此处编写用户敲回车后的代码
+                    return $("#btnSignIn").click();
+                }
+            });
+
         });
+
         function Login(data) {
-            if (null != data && data.isOperateSucess == true) {
+            if (null != data && data.isOperateSuccess) {
                 window.location.href = _homeUrl;
             } else {
-                AlertErrorMsg("Login fail. Because " + data.Description);
+                AlertErrorMsg("Login fail. " + data.description);
                 return false;
             }
             return true;
@@ -213,4 +222,3 @@
     </script>
 </body>
 </html>
-

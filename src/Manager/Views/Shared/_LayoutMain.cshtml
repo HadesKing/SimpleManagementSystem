@@ -37,8 +37,8 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         @{
-            Html.RenderPartialAsync("_PartialHeader");
-            Html.RenderPartialAsync("_PartialLeft");
+            await Html.RenderPartialAsync("_PartialHeader");
+            await Html.RenderPartialAsync("_PartialLeft");
         }
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="min-height: 916px;">
@@ -53,7 +53,7 @@
                     <li class="active">Dashboard</li>
                 </ol>
             </section>
-            
+
             <!-- Main content -->
             <section class="content">
                 @RenderBody()
@@ -61,8 +61,8 @@
             <!-- /.content -->
         </div>
         @{
-            Html.RenderPartialAsync("_PartialBottom");
-            Html.RenderPartialAsync("_PartialLeftSide");
+            await Html.RenderPartialAsync("_PartialBottom");
+            await Html.RenderPartialAsync("_PartialLeftSide");
         }
 
     </div>
@@ -75,9 +75,10 @@
     <script src="~/css-template/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
     <script src="~/css-template/AdminLTE/dist/js/adminlte.min.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
     <script src="~/js/common/alert.js"></script>
     <script src="~/js/common/ajax.js"></script>
-    
+
     @RenderSection("Bottom", false)
 </body>
 </html>

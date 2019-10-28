@@ -32,5 +32,16 @@ namespace Dal
         /// </summary>
         protected String DbConnectString { get; set; }
 
+        /// <summary>
+        /// 需要操作的表名称
+        /// </summary>
+        protected abstract String TableName { get; }
+
+        //protected Int32 ExcuteNonQuery()
+        //{
+
+        //}
+
+
     }
 }

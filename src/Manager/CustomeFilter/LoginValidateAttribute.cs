@@ -14,6 +14,8 @@ namespace Manager.CustomeFilter
      *     必须登录才能执行的操作，需要使用该类
      */
     /// <summary>
+    /// 必须登录才能执行的操作，需要使用该类
+    /// 也可以在创建一个BaseController 覆盖 OnActionExecuting 和 OnActionExecuted 方法
     /// 
     /// </summary>
     public class LoginValidateAttribute : ActionFilterAttribute
@@ -52,7 +54,8 @@ namespace Manager.CustomeFilter
             String strToken = context.HttpContext.Request.Cookies[Util.LoginTokenHelper.LoginTokenName];
             if (String.IsNullOrWhiteSpace(strToken))
             {
-                context.Result = new BadRequestObjectResult("Please login first.");
+                //context.Result = new BadRequestObjectResult("Please login first.");
+                context.Result = new Manager.Controllers.LoginController().Index();
             }
 
 

@@ -6650,7 +6650,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataBll\DataBll.csproj" />
     <ProjectReference Include="..\Log\Log.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\Util\Util.csproj" />
   </ItemGroup>
 
