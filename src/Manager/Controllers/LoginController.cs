@@ -27,7 +27,7 @@ namespace Manager.Controllers
         public IActionResult Index()
         {
             //这里需要进行校验，是否有Cookie
-            Log.LogFactory.GetDefaultInstance().Debug("123456");        //TODO:测试代码
+            //Log.LogFactory.GetDefaultInstance().Debug("123456");        //TODO:测试代码
             String strToken = HttpContext.Request.Cookies[Util.LoginTokenHelper.LoginTokenName];
             if (!String.IsNullOrWhiteSpace(strToken) && !Util.LoginTokenHelper.IsExpired(strToken))
             {
