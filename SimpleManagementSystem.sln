@@ -21,13 +21,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log", "src\Log\Log.csproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Dal", "5. Dal", "{1FD6C2FD-76FE-48E3-B754-7E62E48B5E4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "src\Dal\Dal.csproj", "{7940BEA9-453D-42CD-8CAB-0669FABCEF2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "src\Dal\Dal.csproj", "{7940BEA9-453D-42CD-8CAB-0669FABCEF2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Util", "src\Util\Util.csproj", "{A52FB42D-6248-4AFD-AB44-8327D2742B45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "设计文档", "设计文档", "{FD2F825C-5CF3-4B01-80A5-A838F9AF676B}"
 	ProjectSection(SolutionItems) = preProject
 		DesignDocument.txt = DesignDocument.txt
+		TableStructure.sql = TableStructure.sql
 	EndProjectSection
 EndProject
 Global
