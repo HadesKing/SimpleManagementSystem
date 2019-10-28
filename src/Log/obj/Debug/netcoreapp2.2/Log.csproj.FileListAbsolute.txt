@@ -1,0 +1,9 @@
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\nlog.config
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.deps.json
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.dll
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.pdb
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.csprojAssemblyReference.cache
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfoInputs.cache
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfo.cs
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.dll
+E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.pdb

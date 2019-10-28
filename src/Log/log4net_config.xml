@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <!--(高) OFF > FATAL > ERROR > WARN > INFO > DEBUG > ALL (低)-->
+  <logger name="log4netLevel">
+    <level value="ALL" />
+    <!--<level value="DEBUG" />-->
+    <!--<level value="INFO" />-->
+    <!--<level value="WARN" />
+      <level value="ERROR" />-->
+    <!--<level value="FATAL" />
+      <level value="OFF" />-->
+  </logger>
+  <!--定义输出到文件中-->
+  <logger name="Error">
+    <!--<level value="ERROR" />-->
+    <appender-ref ref="ErrorAppender" />
+  </logger>
+  <logger name="Fatal">
+    <!--<level value="INFO" />-->
+    <appender-ref ref="FatalAppender" />
+  </logger>
+  <logger name="Debug">
+    <!--<level value="ERROR" />-->
+    <appender-ref ref="DebugAppender" />
+  </logger>
+  <logger name="Warn">
+    <!--<level value="INFO" />-->
+    <appender-ref ref="WarnAppender" />
+  </logger>
+  <logger name="Info">
+    <!--<level value="INFO" />-->
+    <appender-ref ref="InfoAppender" />
+  </logger>
+  <appender name="ErrorAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="Log\\Error\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Error startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Error shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 类描述：%logger property:[%property{NDC}] - 日志描述：%message%newline" />
+    </layout>
+  </appender>
+  <appender name="FatalAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="Log\\Fatal\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Fatal startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Fatal shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 类描述：%logger property:[%property{NDC}] - 日志描述：%message%newline" />
+    </layout>
+  </appender>
+  <appender name="DebugAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="Log\\Debug\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Debug startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Debug shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 类描述：%logger property:[%property{NDC}] - 日志描述：%message%newline" />
+    </layout>
+  </appender>
+  <appender name="WarnAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="Log\\Warn\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Warn startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Warn shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 类描述：%logger property:[%property{NDC}] - 日志描述：%message%newline" />
+    </layout>
+  </appender>
+  <appender name="InfoAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="Log\\Info\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Info startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Info shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 类描述：%logger property:[%property{NDC}] - 日志信息：%message%newline" />
+    </layout>
+  </appender>
+  <!--定义输出到文件中-->
+  <appender name="LogFileAppender" type="log4net.Appender.FileAppender">
+    <param name="File" value="Log\\" />
+    <!--是否覆盖-->
+    <param name="AppendToFile" value="true" />
+    <!--名称是否可以更改 为false为可以更改-->
+    <param name="StaticLogFileName" value="false" />
+    <!--文件名称-->
+    <param name="DatePattern" value="yyyy-MM-dd&quot;.txt&quot;"/>
+    <!-- 切割最多文件数 -1表示不限制产生日志文件数-->
+    <param name="MaxSizeRollBackups" value="-1"/>
+    <!-- RollingStyle Composite 综合  Size 按大小  Date 按时间 -->
+    <param name="RollingStyle" value="Composite"/>
+    <!-- 每个文件的大小限制  -->
+    <param name="MaximumFileSize" value="1MB" />
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <!--每条日志末尾的文字说明-->
+      <!--<footer value="by 刘迪" />-->
+      <param name="Header" value="&#xD;&#xA;---------------------- Error startup--------------------------&#xD;&#xA;" />
+      <param name="Footer" value="&#xD;&#xA; ---------------------- Error shutdown--------------------------&#xD;&#xA;" />
+      <!--输出格式-->
+      <!--样例：2008-03-26 13:42:32,111 [10] INFO Log4NetDemo.MainClass [(null)] - info-->
+      <conversionPattern value="记录时间：%date 线程ID:[%thread] 日志级别：%-5level 出错类：%logger property:[%property{NDC}] - 错误描述：%message%newline" />
+    </layout>
+  </appender>
+  <!--定义输出到控制台命令行中-->
+  <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+    </layout>
+  </appender>
+  <!--定义输出到windows事件中-->
+  <appender name="EventLogAppender" type="log4net.Appender.EventLogAppender">
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+    </layout>
+  </appender>
+  <!--定义输出到数据库中，这里举例输出到Access数据库中，数据库为C盘的log4net.mdb-->
+  <appender name="AdoNetAppender_Access" type="log4net.Appender.AdoNetAppender">
+    <connectionString value="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:log4net.mdb" />
+    <commandText value="INSERT INTO LogDetails ([LogDate],[Thread],[Level],[Logger],[Message]) VALUES (@logDate, @thread, @logLevel, @logger,@message)" />
+    <!--定义各个参数-->
+    <parameter>
+      <parameterName value="@logDate" />
+      <dbType value="String" />
+      <size value="240" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date" />
+      </layout>
+    </parameter>
+    <parameter>
+      <parameterName value="@thread" />
+      <dbType value="String" />
+      <size value="240" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%thread" />
+      </layout>
+    </parameter>
+    <parameter>
+      <parameterName value="@logLevel" />
+      <dbType value="String" />
+      <size value="240" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%level" />
+      </layout>
+    </parameter>
+    <parameter>
+      <parameterName value="@logger" />
+      <dbType value="String" />
+      <size value="240" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%logger" />
+      </layout>
+    </parameter>
+    <parameter>
+      <parameterName value="@message" />
+      <dbType value="String" />
+      <size value="240" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%message" />
+      </layout>
+    </parameter>
+  </appender>
+
+  <!--定义日志的输出媒介，下面定义日志以四种方式输出。也可以下面的按照一种类型或其他类型输出。-->
+  <!--
+    <root>
+      -->
+  <!--文件形式记录日志-->
+  <!--
+      <appender-ref ref="LogFileAppender" />
+      -->
+  <!--控制台控制显示日志-->
+  <!--
+      <appender-ref ref="ConsoleAppender" />
+      -->
+  <!--Windows事件日志-->
+  <!--
+      <appender-ref ref="EventLogAppender" />
+      -->
+  <!-- 如果不启用相应的日志记录，可以通过这种方式注释掉
+      <appender-ref ref="AdoNetAppender_Access" />
+      -->
+  <!--
+    </root>-->
+
+</log4net>

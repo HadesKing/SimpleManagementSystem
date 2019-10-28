@@ -1,0 +1,10 @@
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\bin\Release\netcoreapp2.1\nlog.config
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\bin\Release\netcoreapp2.1\Log.deps.json
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\bin\Release\netcoreapp2.1\Log.dll
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\bin\Release\netcoreapp2.1\Log.pdb
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.csprojAssemblyReference.cache
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.csproj.CoreCompileInputs.cache
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.AssemblyInfoInputs.cache
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.AssemblyInfo.cs
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.dll
+E:\刘迪\个人文件\TestProject\TestPaymentIpn\MyPaymentIpn\src\Log\obj\Release\netcoreapp2.1\Log.pdb
