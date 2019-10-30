@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Util
 {
-    /* Copyright:dx.com
+    /* Copyright: liudi
      *
      * Autor: xx
      * Create Time: xx

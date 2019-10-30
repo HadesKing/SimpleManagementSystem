@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@* 查询条件 *@
+<div class="row">
+
+</div>
+
+@* 数据列表 *@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Bordered Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row" id="queryFilter">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            用户名：
+                                        </th>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Enter UserName" id="UserName">
+                                        </td>
+                                        <td>
+                                            <input type="button" class="btn btn-primary" id="query" value="查 询" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" id="dataTable">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-striped dataTable" role="grid" id="dataList">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>用户名</th>
+                                        <th>状态</th>
+                                        <th>创建时间</th>
+                                        <th>创建人</th>
+                                        <th style="width: 120px;">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" id="divPagination">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+@section Bottom{
+    <script src="../../js/common/pagination.js"></script>
+    <!-- DataTables -->
+    <script>
+        $(function () {
+            //$("#dataTableUrl").val(_menuDataTableUrl);
+
+            //点击查询事件
+            $("#query").click(function () {
+                GetData(1);
+            });
+        });
+
+        function GetData(pageIndex) {
+            var url = _getUserList;
+            var data = {};
+            data.UserName = $("#UserName").val();
+            data.CurrentPageIndex = !pageIndex ? 1 : parseInt(pageIndex);
+            data.PageSize = 10;
+            SendPostRequest(url, data, ShowUserList);
+        }
+
+        function ShowUserList(data) {
+            var html = "";
+            if (null != data && data.isOperateSuccess) {
+                if (null != data.value && null != data.value.data) {
+                    var rowNumber = data.value.data.length;
+                    var tmpData;
+                    for (var row = 0; row < rowNumber; row++) {
+                        tmpData = data.value.data[row];
+                        html += "<tr>";
+                        html += '<td style=" vertical-align:middle;">' + (row + 1) + "</td>";
+                        html += '<td style=" vertical-align:middle;">' + tmpData.userName + "</td>";
+                        if (tmpData.state == "Normal") {
+                            html += '<td style=" vertical-align:middle;"><small class="label bg-green">' + tmpData.state + '</small></td>';
+                        } else {
+                            html += '<td style=" vertical-align:middle;"><small class="label bg-red">' + tmpData.state + '</small></td>';
+                        }
+                        html += '<td style=" vertical-align:middle;">' + tmpData.createTime + "</td>";
+                        html += '<td style=" vertical-align:middle;">' + tmpData.creator + "</td>";
+
+                        var buttonHtml = "";
+                        //buttonHtml += '<div class="margin">';
+                        buttonHtml += '<div class="btn-group">';
+                        buttonHtml += '<button type="button" class="btn btn-info">编辑</button>';
+                        buttonHtml += '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
+                        buttonHtml += '<span class="caret"></span>';
+                        buttonHtml += '<span class="sr-only">Toggle Dropdown</span>';
+                        buttonHtml += '</button>';
+                        buttonHtml += '<ul class="dropdown-menu" role="menu" style="min-width:90px;">';
+                        buttonHtml += '<li><a href="#">禁用</a></li>';
+                        buttonHtml += '<li><a href="#">重置密码</a></li>';
+                        buttonHtml += '<li class="divider"></li>';
+                        buttonHtml += '<li><a href="#">删除</a></li>';
+                        buttonHtml += '</div>';
+                        //buttonHtml += '</div>';
+                        buttonHtml += '';
+                        html += '<td style=" vertical-align:middle;">' + buttonHtml + "</td>";
+                        html += "</tr>";
+                        html += "";
+                    }
+
+                    //设置分页
+                    AddPagination("divPagination"
+                        , data.value.currentPageIndex, data.value.pageSize
+                        , data.value.totalPage, data.value.totalRow
+                        , GetData);
+                } else {
+                    AlertMsg("No eligible data found");
+                    html += "<tr>";
+                    html += '<td colspan="' + $("#dataList thead").length + '">No eligible data found.</td>';
+                    html += "</tr>";
+                }
+            }
+            $("#dataList tbody").empty();
+            $("#dataList tbody").append(html);
+        }
+
+    </script>
+}

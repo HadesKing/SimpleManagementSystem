@@ -21,7 +21,7 @@ namespace Manager.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Edit()
+        public IActionResult Edit()
         {
             Util.Return.ReturnValue<String> returnValue = new Util.Return.ReturnValue<String>();
             try

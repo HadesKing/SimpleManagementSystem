@@ -22,7 +22,7 @@ function AddPagination(idSelector, currentPageIndex, pageSize, totalPage, totalR
     }
 
     //添加分页信息显示
-    var showPageInfoHtml = '<div class="col-sm-5" style="padding-left: 0px;">';
+    var showPageInfoHtml = '<div class="col-sm-5">';
     showPageInfoHtml += '<div class="dataTables_info" role="status" aria-live="polite">';
     showPageInfoHtml += '<span>';
     showPageInfoHtml += 'Showing ' + currentPageIndex + ' to ' + pageSize + ' of ' + totalRow + ' entries';

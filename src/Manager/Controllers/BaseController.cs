@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Manager.Controllers
 {
 
-    /* Copyright:dx.com
+    /* Copyright: liudi
      *
      * Autor: xx
      * Create Time: xx
