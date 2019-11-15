@@ -4,13 +4,21 @@
 // Write your JavaScript code.
 
 
-var _loginUrl = "Login";
+var _homeUrl = "Home";
 
+/* Login */
+var _loginUrl = "Login";
 var _userLoginUrl = "Account/Login";
 var _userLoginOutUrl = "Account/Signout";
 
-var _homeUrl = "Home";
+/* User */
+var _getUserList = "/User/GetList";
+var _enableUser = "/User/EnableUser";
+var _disableUser = "/User/DisableUser";
+var _editUserPassword = "/UserPassword/Edit";
 
-var _editUserPassword = "UserPassword/Edit";
+/* UserPassword */
+var _resetUserPassword = "/UserPassword/Reset";
 
+/* Menu */
 var _menuDataTableUrl = "Menu/Get";

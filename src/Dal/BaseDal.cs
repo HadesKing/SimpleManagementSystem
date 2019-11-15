@@ -29,6 +29,10 @@ namespace Dal
     /// <description></description>
     public abstract class BaseDal
     {
+        public BaseDal()
+        {
+            DbConnectString = Util.ConfigurationHelper.GetValue("DbConnectString:fms");
+        }
 
         /// <summary>
         /// 数据库连接字符串
@@ -168,13 +172,8 @@ namespace Dal
             #region 【MYSQL】
             /* MYSQL */
             sbSql.Append(" SELECT * ");
-            sbSql.Append($" FROM {TableName}");
-            sbSql.Append(" WHERE ");
-            sbSql.Append($" {argPrimaryKeyField} > ");
-            sbSql.Append(" ( ");
-            sbSql.Append($"      SELECT MAX({argPrimaryKeyField}) ");
-            sbSql.Append($"      FROM {TableName} ");
-            sbSql.Append("       ( ");
+            sbSql.Append($" FROM {TableName} AS A ");
+            sbSql.Append($" INNER JOIN ( ");
             sbSql.Append($"          SELECT {argPrimaryKeyField} ");
             sbSql.Append($"          FROM {TableName} ");
             sbSql.Append("           WHERE 1 = 1 ");
@@ -184,11 +183,9 @@ namespace Dal
             }
             sbSql.Append($"          ORDER BY {argSortSql} ");
             sbSql.Append($"          LIMIT {(argPageIndex - 1) * argPageSize }, {argPageSize}");
-            sbSql.Append("       ) AS A ");
-            sbSql.Append(" ) ");
-            sbSql.Append($" ORDER BY {argSortSql} ");
-            sbSql.Append($" LIMIT {argPageSize} ");
-            sbSql.Append(""); 
+            sbSql.Append("  ");
+            sbSql.Append($"  ) AS B ON A.{argPrimaryKeyField} = B.{argPrimaryKeyField} ");
+
             #endregion
 
             return sbSql.ToString();
@@ -281,7 +278,28 @@ namespace Dal
         {
             return dbConnection.Execute(argSql, param, dbTransaction, CommandTimeOut, commandType);
         }
+        
+        /// <summary>
+        /// 验证 SQL 语句
+        /// 验证逻辑：
+        ///     修改、删除操作必须有where条件
+        /// </summary>
+        protected void ValidateSql(String argSql)
+        {
+            if(!String.IsNullOrWhiteSpace(argSql))
+            {
+                String strSql = argSql.ToLower();
+                if (
+                    (argSql.IndexOf("update") > -1
+                    || argSql.IndexOf("delete") > -1
+                    ) && argSql.IndexOf("where") <= 0
+                    )
+                {
+                    throw new Exception($"The where condition is not included in the T-sql sentence.{argSql}");
+                }
+            }
 
+        }
 
     }
 }

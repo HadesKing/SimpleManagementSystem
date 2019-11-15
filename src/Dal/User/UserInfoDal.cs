@@ -51,6 +51,24 @@ namespace Dal.User
         /// <summary>
         /// 获取用户信息
         /// </summary>
+        /// <param name="argId">用户id</param>
+        /// <returns></returns>
+        public UserInfo Get(Int32 argId)
+        {
+            String strSql = $"SELECT * FROM {TableName} WHERE ID = @ID";
+            UserInfo user = null;
+            using (IDbConnection dbConnection = GetDbConnection())
+            {
+                user = dbConnection.QueryFirstOrDefault<UserInfo>(strSql, new { ID = argId }, null, CommandTimeOut, CommandType.Text);
+
+                Dispose(dbConnection);
+            }
+            return user;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
         /// <param name="argUserName">用户名</param>
         /// <returns></returns>
         public UserInfo Get(String argUserName)
@@ -66,25 +84,33 @@ namespace Dal.User
             return user;
         }
 
+
         /// <summary>
         /// 查询
         /// </summary>
         /// <param name="argUserName">用户名</param>
+        /// <param name="argState">用户状态</param>
         /// <param name="argPageIndex">获取第几页的数据</param>
         /// <param name="argPageSize">一页多少条</param>
         /// <returns></returns>
-        public (Int32, IList<UserInfo>) Query(String argUserName, Int32 argPageIndex, Int32 argPageSize)
+        public (Int32, IList<UserInfo>) Query(String argUserName, Int32 argState, Int32 argPageIndex, Int32 argPageSize)
         {
-            StringBuilder sbWhereSql = new StringBuilder();
+            IList<String> whereSqlList = new List<String>();
             if (!String.IsNullOrWhiteSpace(argUserName))
             {
-                sbWhereSql.Append($" CHARINDEX(@UserName, UserName) > 0 ");
+                //whereSqlList.Add($" CHARINDEX(@UserName, UserName) > 0 ");        // MS Sql Server
+                whereSqlList.Add($" INSTR(UserName, @UserName) > 0 ");      //MYSQL
             }
+            if (argState > 0)
+            {
+                whereSqlList.Add($" State = @State ");
+            }
+            String strWhereSql = String.Join(" AND ", whereSqlList);
 
             IList<UserInfo> users = null;
             Int32 totalRow;
             (totalRow, users) = Query<UserInfo>(
-                "ID", sbWhereSql.ToString(), new { UserName = argUserName }
+                "ID", strWhereSql, new { UserName = argUserName, State = argState }
                 , "ID DESC", argPageIndex, argPageSize);
             return (totalRow, users);
         }
@@ -96,26 +122,27 @@ namespace Dal.User
         /// </summary>
         /// <param name="argUserInfo"></param>
         /// <returns></returns>
-        public Int32 Update(UserInfo argUserInfo)
+        public bool Update(UserInfo argUserInfo)
         {
             StringBuilder sbSql = new StringBuilder();
             sbSql.Append($"UPDATE {TableName} ");
             sbSql.Append(@"   
-   SET [Code] = @Code
-      ,[UserName] = @UserName
-      ,[Password] = @Password
-      ,[State] = @State
-      ,[Description] = @Description
-      ,[Remark] = @Remark
-      ,[LastUpdateTime] = @LastUpdateTime
-      ,[LastUpdator] = @LastUpdator
-
+   SET Code = @Code
+      ,UserName = @UserName
+      ,Password = @Password
+      ,State = @State
+      ,Description = @Description
+      ,Remark = @Remark
+      ,LastUpdateTime = @LastUpdateTime
+      ,LastUpdator = @LastUpdator
+        WHERE
+            ID = @ID
             ");
             sbSql.Append("");
-
+            ValidateSql(sbSql.ToString());
             Int32 result = ExecuteNonQuery(sbSql.ToString(), argUserInfo, CommandType.Text);
 
-            return result;
+            return result > 0;
         }
 
         #endregion

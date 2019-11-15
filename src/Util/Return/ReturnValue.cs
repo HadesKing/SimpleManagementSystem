@@ -15,7 +15,7 @@ namespace Util.Return
         /// <summary>
         /// 返回数据
         /// </summary>
-        public T Data { get; set; }
+        public T Value { get; set; }
 
     }
 }

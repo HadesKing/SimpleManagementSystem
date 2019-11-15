@@ -70,6 +70,28 @@ namespace Manager.Controllers
         }
 
         /// <summary>
+        /// 处理异常
+        /// </summary>
+        /// <param name="argDescription">描述信息</param>
+        /// <param name="exception">异常</param>
+        protected void ProcessException(String argDescription, Exception exception)
+        {
+            StringBuilder sbContent = new StringBuilder();
+            sbContent.Append(argDescription);
+            sbContent.Append("\r\n");
+            sbContent.Append("Error message:");
+            sbContent.Append("\r\n");
+            sbContent.Append($"     {exception.Message}");
+            sbContent.Append("\r\n");
+            sbContent.Append("Error stack trace:");
+            sbContent.Append("\r\n");
+            sbContent.Append($"     {exception.StackTrace}");
+            sbContent.Append("\r\n");
+            sbContent.Append("");
+            m_log.Error(sbContent.ToString(), exception);
+        }
+
+        /// <summary>
         /// 执行方法之后
         /// </summary>
         /// <param name="context"></param>

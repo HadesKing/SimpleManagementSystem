@@ -13,7 +13,12 @@
                 <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
             </ul>
         </li>
-        <li><a href="~/Menu/Index"><i class="fa fa-edit"></i> <span>菜单管理</span></a></li>
-        <li><a href="~/Department/Index"><i class="fa fa-edit"></i> <span>部门管理</span></a></li>
-        <li><a href="~/User/EditPassword"><i class="fa fa-edit"></i> <span>修改密码</span></a></li>
+        @*url说明：
+            使用 Url.Content 可以避免发布时，域名是二级域名的问题
+
+            *@
+        <li><a href="@Url.Content("~/User/Index")"><i class="fa fa-edit"></i> <span>用户管理</span></a></li>
+        <li><a href="@Url.Content("~/Menu/Index")"><i class="fa fa-edit"></i> <span>菜单管理</span></a></li>
+        <li><a href="@Url.Content("~/Department/Index")"><i class="fa fa-edit"></i> <span>部门管理</span></a></li>
+        <li><a href="@Url.Content("~/User/EditPassword")"><i class="fa fa-edit"></i> <span>修改密码</span></a></li>
     </ul>

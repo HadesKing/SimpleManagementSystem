@@ -19,12 +19,14 @@ namespace Model.EnumType
     /// </summary>
     public enum UserState
     {
-
-        [Description("禁用")]
-        Disable = 0,
+        [Description("Unknow")]
+        Unknow = 0,
 
         [Description("正常")]
-        Normal = 1
+        Normal = 1,
+
+        [Description("禁用")]
+        Disable = 2,
 
     }
 }

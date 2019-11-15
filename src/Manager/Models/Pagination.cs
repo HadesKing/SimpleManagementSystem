@@ -9,7 +9,7 @@ namespace Manager.Models
     /// <summary>
     /// 分页
     /// </summary>
-    public class Pagination
+    public abstract class Pagination
     {
 
         /// <summary>
@@ -58,17 +58,12 @@ namespace Manager.Models
             }
         }
 
-        /// <summary>
-        /// 获取数据的URL
-        /// </summary>
-        public String Url { get; set; }
-
     }
     /// <summary>
     /// 分页
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Pagination<T> : Pagination
+    public class Pagination<T> : Pagination
     {
 
         /// <summary>

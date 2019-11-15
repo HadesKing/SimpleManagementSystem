@@ -30,6 +30,16 @@
                                         <td>
                                             <input type="text" class="form-control" placeholder="Enter UserName" id="UserName">
                                         </td>
+                                        <th>
+                                            状态：
+                                        </th>
+                                        <td>
+                                            <select class="form-control" id="State">
+                                                <option value="0">全部</option>
+                                                <option value="1">启用</option>
+                                                <option value="2">禁用</option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <input type="button" class="btn btn-primary" id="query" value="查 询" />
                                         </td>
@@ -40,7 +50,7 @@
                     </div>
                     <div class="row" id="dataTable">
                         <div class="col-sm-12">
-                            <table class="table table-bordered table-striped dataTable" role="grid" id="dataList">
+                            <table class="table table-hover table-bordered table-striped dataTable" role="grid" id="dataList">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -51,8 +61,7 @@
                                         <th style="width: 120px;">操作</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -71,6 +80,7 @@
     <script src="../../js/common/pagination.js"></script>
     <!-- DataTables -->
     <script>
+        var currentPageIndex = 1;
         $(function () {
             //$("#dataTableUrl").val(_menuDataTableUrl);
 
@@ -81,28 +91,39 @@
         });
 
         function GetData(pageIndex) {
+            currentPageIndex = pageIndex;
             var url = _getUserList;
             var data = {};
             data.UserName = $("#UserName").val();
+            data.State = $("#State option:selected").val();
             data.CurrentPageIndex = !pageIndex ? 1 : parseInt(pageIndex);
             data.PageSize = 10;
             SendPostRequest(url, data, ShowUserList);
         }
-
+        /**
+         * 显示用户列表
+         * param data：用户列表信息
+         */
         function ShowUserList(data) {
+            $("#divPagination").empty();        //删除分页内容
+            $("#dataList tbody").empty();       //删除列表内容
             var html = "";
             if (null != data && data.isOperateSuccess) {
                 if (null != data.value && null != data.value.data) {
                     var rowNumber = data.value.data.length;
                     var tmpData;
+                    var tmpState;
+                    var startNumber = (currentPageIndex -1) * data.value.pageSize;
                     for (var row = 0; row < rowNumber; row++) {
                         tmpData = data.value.data[row];
                         html += "<tr>";
-                        html += '<td style=" vertical-align:middle;">' + (row + 1) + "</td>";
+                        html += '<td style=" vertical-align:middle;">' + (startNumber + row + 1) + "</td>";
                         html += '<td style=" vertical-align:middle;">' + tmpData.userName + "</td>";
                         if (tmpData.state == "Normal") {
+                            tmpState = 1;
                             html += '<td style=" vertical-align:middle;"><small class="label bg-green">' + tmpData.state + '</small></td>';
                         } else {
+                            tmpState = 2;
                             html += '<td style=" vertical-align:middle;"><small class="label bg-red">' + tmpData.state + '</small></td>';
                         }
                         html += '<td style=" vertical-align:middle;">' + tmpData.createTime + "</td>";
@@ -117,8 +138,15 @@
                         buttonHtml += '<span class="sr-only">Toggle Dropdown</span>';
                         buttonHtml += '</button>';
                         buttonHtml += '<ul class="dropdown-menu" role="menu" style="min-width:90px;">';
-                        buttonHtml += '<li><a href="#">禁用</a></li>';
-                        buttonHtml += '<li><a href="#">重置密码</a></li>';
+                        switch (tmpState) {
+                            case 1:
+                                buttonHtml += '<li><a href="#" onclick="EditUserState(' + tmpData.id + ', 2);">禁用</a></li>';
+                                break;
+                            case 2:
+                                buttonHtml += '<li><a href="#" onclick="EditUserState(' + tmpData.id + ', 1);">启用</a></li>';
+                                break;
+                        }
+                        buttonHtml += "<li><a href='#' onclick=\"ResetPassword(" + tmpData.id + ", \'" + tmpData.userName + "\')\" >重置密码</a></li>";
                         buttonHtml += '<li class="divider"></li>';
                         buttonHtml += '<li><a href="#">删除</a></li>';
                         buttonHtml += '</div>';
@@ -137,12 +165,66 @@
                 } else {
                     AlertMsg("No eligible data found");
                     html += "<tr>";
-                    html += '<td colspan="' + $("#dataList thead").length + '">No eligible data found.</td>';
+                    html += '<td colspan="' + $("#dataList thead tr th").length + '">No eligible data found.</td>';
                     html += "</tr>";
                 }
+            } else {
+                if (null != data) {
+                    AlertErrorMsg(data.description);
+                }
             }
-            $("#dataList tbody").empty();
             $("#dataList tbody").append(html);
+        }
+
+        /**
+         * 修改用户状态
+         * param userId：用户id
+         * param userState：用户状态值
+         */
+        function EditUserState(userId, userState) {
+            var url = "";
+            switch (userState) {
+                case 1:
+                    url = _enableUser;
+                    break;
+                case 2:
+                    url = _disableUser;
+                    break;
+            }
+
+            var data = {};
+            data.Id = userId;
+            SendPostRequest(url, data, function (result) {
+                if (result.isOperateSuccess) {
+                    AlertSuccessMsg(result.description);
+                    GetData(currentPageIndex);
+                } else {
+                    AlertFaiureMsg(result.description);
+                }
+            });
+        }
+
+        function ResetPassword(id, userName) {
+            layer.confirm("确定重置<strong>" + userName + "</strong>的密码为<strong>dx654321</strong>?", {
+                title: "重置密码"
+                , btn: ['OK', 'Cancel'] //按钮
+            }, function () {
+                var url = _resetUserPassword;
+
+                var data = {};
+                data.UserId = id;
+                data.Mode = 1;
+                SendPostRequest(url, data, function (result) {
+                    if (result.isOperateSuccess) {
+                        AlertSuccessMsg(result.description);
+                    } else {
+                        AlertFaiureMsg(result.description);
+                    }
+                });
+
+            }, function () {
+
+            });
         }
 
     </script>
