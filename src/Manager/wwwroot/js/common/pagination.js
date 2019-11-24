@@ -64,7 +64,7 @@ function AddPagination(idSelector, currentPageIndex, pageSize, totalPage, totalR
         showPageButtonHtml += GeneratePageNumberHtml(startIndex - 1);
     }
     //计算是否需要显示当前页后面的更多页
-    if ((currentPageIndex + _PaginationShowPageNumber) < totalPage) {
+    if ((currentPageIndex + afterShowNumber) < totalPage) {
         isShowEndMore = true;
     }
     //设置中间显示的分页
@@ -111,11 +111,13 @@ function CalculateBeforeShowPageNumber(totalPageNuber, currentPageIndex) {
     var halfTotalShowPageNumber = _PaginationShowPageNumber / 2;
     var result = 0;
     if (totalPageNuber < _PaginationShowPageNumber) {
-        if ((totalPageNuber - currentPageIndex) >= currentPageIndex) {
-            result = currentPageIndex - 1
-        } else {
-            result = totalPageNuber - currentPageIndex;
-        }        
+        //总页数小于分页数量时，需要显示所有页数
+        result = currentPageIndex;  //加一的原因：加上当前页
+        //if ((totalPageNuber - currentPageIndex) >= currentPageIndex) {
+        //    result = currentPageIndex - 1;
+        //} else {
+        //    result = totalPageNuber - currentPageIndex + 1;  //加一的原因：加上当前页
+        //}        
     } else {
         /**
          * 计算逻辑：

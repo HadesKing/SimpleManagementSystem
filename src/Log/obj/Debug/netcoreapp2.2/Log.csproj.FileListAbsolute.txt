@@ -7,3 +7,12 @@ E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src
 E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfo.cs
 E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.dll
 E:\刘迪\个人文件\Project\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.pdb
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\nlog.config
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.deps.json
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.dll
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\bin\Debug\netcoreapp2.2\Log.pdb
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.csprojAssemblyReference.cache
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfoInputs.cache
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfo.cs
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.dll
+F:\旧磁盘数据\Project\Git\SimpleManagementSystem\SimpleManagementSystem\src\Log\obj\Debug\netcoreapp2.2\Log.pdb
