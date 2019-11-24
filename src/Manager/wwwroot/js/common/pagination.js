@@ -148,7 +148,7 @@ function GeneratePageNumberHtml(pageIndex, showContent = "...", parentAddClass =
     var html = "";
 
     html += '<li class="paginate_button ' + parentAddClass + '" tabindex="0">';
-    html += '<a href="#" data-page-idx="' + pageIndex + '" tabindex="0">' + showContent;
+    html += '<a style="cursor: pointer;" data-page-idx="' + pageIndex + '" tabindex="0">' + showContent;
     html += '</a>';
     html += '</li>';
 
