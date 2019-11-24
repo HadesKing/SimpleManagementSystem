@@ -31,7 +31,18 @@ namespace Dal
     {
         public BaseDal()
         {
-            DbConnectString = Util.ConfigurationHelper.GetValue("DbConnectString:fms");
+            DbConnectString = Util.ConfigurationHelper.GetValue(DbConnectStringName);
+        }
+
+        /// <summary>
+        /// 数据库连接字符串配置节点名称
+        /// </summary>
+        private String DbConnectStringName
+        {
+            get
+            {
+                return "DbConnectString:manager";
+            }
         }
 
         /// <summary>
@@ -83,7 +94,7 @@ namespace Dal
             try
             {
                 if (String.IsNullOrWhiteSpace(DbConnectString))
-                    throw new Exception("The fms database connectstring is null or empty!");
+                    throw new Exception($"The {DbConnectStringName} database connectstring is null or empty!");
 
                 dbConnection = new MySqlConnection(DbConnectString);
                 //打开连接
