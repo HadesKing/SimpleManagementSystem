@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\刘迪\\个人文件\\Project\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj": {}
+    "F:\\旧磁盘数据\\Project\\Git\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj": {}
   },
   "projects": {
-    "E:\\刘迪\\个人文件\\Project\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj": {
+    "F:\\旧磁盘数据\\Project\\Git\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\刘迪\\个人文件\\Project\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj",
+        "projectUniqueName": "F:\\旧磁盘数据\\Project\\Git\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj",
         "projectName": "Log",
-        "projectPath": "E:\\刘迪\\个人文件\\Project\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\刘迪\\个人文件\\Project\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\obj\\",
+        "projectPath": "F:\\旧磁盘数据\\Project\\Git\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\Log.csproj",
+        "packagesPath": "C:\\Users\\Aarion\\.nuget\\packages\\",
+        "outputPath": "F:\\旧磁盘数据\\Project\\Git\\SimpleManagementSystem\\SimpleManagementSystem\\src\\Log\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Aarion\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
